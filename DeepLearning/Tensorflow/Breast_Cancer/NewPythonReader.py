@@ -59,4 +59,4 @@ data = np.asarray(data,dtype=int)
 labels = np.asarray(labels, dtype=int)
 
 score = model.evaluate(data, labels, batch_size=128)
-print("Accuracy:",str(score[1]*100)+"%")
+print("Accuracy on Testing Data:",str(score[1]*100)+"%")
