@@ -52,7 +52,7 @@ with open(filename) as inf:
         values = line.strip().split(',')
         features = values[0:9]
         label = list(values[10])
-        data.append(features)+
+        data.append(features)
         labels.append(label)
 
 data = np.asarray(data,dtype=int)
