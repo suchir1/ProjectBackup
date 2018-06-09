@@ -36,6 +36,7 @@ with open(filename) as inf:
         data.append(features)
         labels.append(label)
         
+        
 data = np.asarray(data,dtype=int)
 labels = np.asarray(labels, dtype=int)
 model.fit(x=data, y=labels, batch_size=32, epochs=200)
