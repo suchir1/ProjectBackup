@@ -35,6 +35,7 @@ with open(filename) as inf:
         label = list(values[10])
         data.append(features)
         labels.append(label)
+
         
         
 data = np.asarray(data,dtype=int)
