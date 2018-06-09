@@ -1,8 +1,8 @@
-import tensorflow as tf
-import time
 import os
-from tensorflow.python.keras.layers import Input, Dense, Activation
+import time
 import numpy as np
+import tensorflow as tf
+from tensorflow.python.keras.layers import Activation, Dense, Input
 
 sess = tf.InteractiveSession()
 
