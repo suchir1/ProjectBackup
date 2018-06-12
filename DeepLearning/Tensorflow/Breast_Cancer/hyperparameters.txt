@@ -1,1 +1,4 @@
 Best Hyperparameters: {'epochs': 51.0, 'firstLayerNodes': 29.0, 'learningRate': 0.07247683207767032, 'secondLayerNodes': 26.0, 'thirdLayerNodes': 45.0}
+
+1000 runs
+{'epochs': 13.0, 'firstLayerNodes': 12.0, 'learningRate': 0.06134166921074101, 'secondLayerNodes': 56.0, 'thirdLayerNodes': 76.0}
