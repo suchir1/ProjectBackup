@@ -81,11 +81,19 @@ def objective(params={'firstLayerNodes':19.0,
     sess.close()
     return {'loss': score[0], 'status': STATUS_OK }
 
+def objectiveAverage(params):
+    iterations = 3
+    loss = 0
+    for i in range(iterations):
+        loss+=objective(params=params)['loss']
+    loss=loss/iterations
+    return loss
+
 squad = {'firstLayerNodes':hp.quniform('firstLayerNodes',9, 90,1), 
     'secondLayerNodes':hp.quniform('secondLayerNodes',5, 90,1), 
     'thirdLayerNodes': hp.quniform('thirdLayerNodes',3, 90,1), 
     'learningRate':hp.uniform('learningRate', .001,.1),
     'epochs':hp.quniform('epochs', 10, 200, 1)}
-best = fmin(fn=objective, space=squad, algo=tpe.suggest, max_evals=200, verbose=True)
+best = fmin(fn=objectiveAverage, space=squad, algo=tpe.suggest, max_evals=200, verbose=True)
 
 print("Best Hyperparameters: " + str(best))
