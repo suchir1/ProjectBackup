@@ -81,7 +81,7 @@ def objective(params={'epochs': 13.0, 'firstLayerNodes': 12.0, 'learningRate': 0
 def objectiveAverage(params):
     iterations = 3
     loss = 0
-    for i in range(iterations):
+    for _ in range(iterations):
         loss+=objective(params=params)['loss']
     loss=loss/iterations
     return loss
