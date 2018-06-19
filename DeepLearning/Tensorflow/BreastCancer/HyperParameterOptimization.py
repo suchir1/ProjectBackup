@@ -1,3 +1,5 @@
+# pylint: disable=E0611
+
 import os
 import time
 import numpy as np
@@ -6,13 +8,7 @@ from tensorflow.python.keras.layers import Activation, Dense, Input, Dropout
 from tensorflow.python.keras.optimizers import Adam
 from hyperopt import fmin, tpe, hp, STATUS_OK
 
-
-def objective(params={'firstLayerNodes':19.0, 
-    'secondLayerNodes':18.0, 
-    'thirdLayerNodes': 61.0, 
-    'learningRate':0.08684948972911224,
-    'epochs':68.0}):
-    
+def objective(params={'epochs': 13.0, 'firstLayerNodes': 12.0, 'learningRate': 0.06134166921074101, 'secondLayerNodes': 56.0, 'thirdLayerNodes': 76.0}):
     model = None
     tf.reset_default_graph()
 
@@ -35,7 +31,6 @@ def objective(params={'firstLayerNodes':19.0,
     model.compile(optimizer=optimizer,
                 loss='binary_crossentropy',
                 metrics=['accuracy'])
-
 
     data = list()
     labels = list()
@@ -81,11 +76,20 @@ def objective(params={'firstLayerNodes':19.0,
     sess.close()
     return {'loss': score[0], 'status': STATUS_OK }
 
-squad = {'firstLayerNodes':hp.quniform('firstLayerNodes',9, 90,1), 
+def objectiveAverage(params):
+    iterations = 3
+    loss = 0
+    for _ in range(iterations):
+        loss+=objective(params=params)['loss']
+    loss=loss/iterations
+    return loss
+
+parameters = {'firstLayerNodes':hp.quniform('firstLayerNodes',9, 90,1), 
     'secondLayerNodes':hp.quniform('secondLayerNodes',5, 90,1), 
     'thirdLayerNodes': hp.quniform('thirdLayerNodes',3, 90,1), 
     'learningRate':hp.uniform('learningRate', .001,.1),
     'epochs':hp.quniform('epochs', 10, 200, 1)}
-best = fmin(fn=objective, space=squad, algo=tpe.suggest, max_evals=200, verbose=True)
+
+best = fmin(fn=objectiveAverage, space=parameters, algo=tpe.suggest, max_evals=1000, verbose=True)
 
 print("Best Hyperparameters: " + str(best))
