@@ -1,3 +1,5 @@
+# pylint: disable=E0611
+
 import argparse
 import numpy as np
 from sklearn import linear_model
