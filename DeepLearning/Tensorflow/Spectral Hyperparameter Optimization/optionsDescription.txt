@@ -1,0 +1,27 @@
+layer1Filters1, <=32 >32
+layer1Filters2, 16, 32, 64, 128
+layer1Kernel1, <=4, >4
+layer1Kernel2, 3,4,5,6
+layer2Filters1, <=32 >32
+layer2Filters2, 16, 32, 64, 128
+layer2Kernel1, <=4, >4
+layer2Kernel2, 3,4,5,6
+layer3Filters1, <=32 >32
+layer3Filters2, 16, 32, 64, 128
+layer3Kernel1, <=4, >4
+layer3Kernel2, 3,4,5,6
+layer4Filters1, <=32 >32
+layer4Filters2, 16, 32, 64, 128
+layer4Kernel1, <=4, >4
+layer4Kernel2, 3,4,5,6
+firstDropout1, 
+firstDropout2, .1, .2, .3, .4
+secondDropout1, 
+secondDropout2, .1, .2, .3, .4
+denseLayer1, <=512, >512
+denseLayer2, 256, 512, 1024, 2048
+learningRate1
+learningRate2
+learningRate3, .000000001,.00000001,.0000001,.000001,.00001,.0001,.001,.01
+batchSize1
+batchSize2 16,32,64,128

@@ -1,14 +1,22 @@
 # You need to implement your own query method
 # See the batch_sampling method at the bottom. Currently it's running in sequential. Please modify it accordingly if you need parallel implementation (which is straightforward).
 
+# pylint: disable=E0401
+
 import numpy as np
+import os
+import sys
+filepath = os.path.dirname(os.path.abspath(__file__))
+filepath = filepath[:filepath.rfind('/')]
+filepath = filepath + '/FashionMNIST/'
+sys.path.insert(0, filepath)
+from InitialNetwork import runCNN
 
 # Example 1: a simple sparse linear function, please uncomment the code below
 
 ##########################################################################
 def query(x):
-    assert(len(x)==60)
-    return 10*(x[2]*x[8]+x[15]+x[46]+x[38]+x[3]*x[6])  #return a simple sparse linear function
+    return runCNN(x)
 ##########################################################################
 
 
