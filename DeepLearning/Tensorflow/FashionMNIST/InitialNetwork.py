@@ -9,6 +9,7 @@ from tensorflow.python.keras.layers import Activation, Dense, Input, Dropout, Co
 from tensorflow.python.keras.optimizers import Adam
 from matplotlib import pyplot as plt
 
+
 def binaryDecoder(x):
     ans = 0
     for i in range(len(x)):
@@ -18,6 +19,7 @@ def binaryDecoder(x):
     return int(ans)
 
 def runCNN(x):
+    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
     num_classes = 10
     filepath = os.path.dirname(os.path.abspath(__file__))+'/data/fashion/'
     x_train, y_train = mnist_reader.load_mnist(filepath, kind='train')
@@ -66,7 +68,7 @@ def runCNN(x):
     model.compile(optimizer=optimizer,
                 loss='categorical_crossentropy',
                 metrics=['accuracy'])
-    model.fit(x=x_train, y=y_train, batch_size=batchSize[binaryDecoder(x[25:27])], epochs=int(10))
+    model.fit(x=x_train, y=y_train, batch_size=batchSize[binaryDecoder(x[25:27])], epochs=int(1))
 
 
     score = model.evaluate(x_test, y_test, batch_size=128)
