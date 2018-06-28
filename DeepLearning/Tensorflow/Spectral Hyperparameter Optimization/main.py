@@ -12,7 +12,7 @@ import os
 
 filepath = os.path.dirname(os.path.abspath(__file__))
 filepath = filepath + "/consoleOutput.txt"
-sys.stdout = open(filepath, "w")
+#sys.stdout = open(filepath, "w")
 
 
 parser = argparse.ArgumentParser()
