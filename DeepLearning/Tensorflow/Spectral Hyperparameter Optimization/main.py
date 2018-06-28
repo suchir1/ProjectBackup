@@ -7,6 +7,12 @@ from samplings import batch_sampling
 from sklearn.preprocessing import PolynomialFeatures
 from utils import addNames,readOptions,printSeparator
 from base_alg import base_hyperband,base_random_search
+import sys
+import os
+
+filepath = os.path.dirname(os.path.abspath(__file__))
+filepath = filepath + "/consoleOutput.txt"
+sys.stdout = open(filepath, "w")
 
 
 parser = argparse.ArgumentParser()
@@ -90,7 +96,6 @@ for currentStage in range(opt.nStage):                      # Multi-stage Lasso
         for depth in range(0, selected_degree+1):
             addNames('', 0, depth, 0, [], optionNames, extendedNames, featureIDList,opt.N)    # This method computes extendedNames and featureIDList
         print("Number of features : ",len(extendedNames))
-
     x=np.array(get_features(x,selected_degree))                     # Make it array
 
     print("Running linear regression..")
