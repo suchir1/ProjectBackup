@@ -157,4 +157,9 @@ for i in range(len(accuracies)):
     best.append(accuracies[i])
     if i%10==0:
         accuracyList.append(best)
-print(accuracyList)
+
+indices = [m.end() for m in re.finditer('Accuracy on Testing Data: ', terminalOutput)]
+accuracies = []
+for index in indices:
+    accuracies.append(terminalOutput[index:terminalOutput.find('\n', index)])
+print(accuracies)

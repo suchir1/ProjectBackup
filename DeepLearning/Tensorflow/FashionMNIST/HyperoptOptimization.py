@@ -12,6 +12,8 @@ from hyperopt import fmin, tpe, hp, STATUS_OK
 import hyperopt
 
 def runCNN(params):
+    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
     for key in params:
         if 'Filter' in key or 'Kernel' in key:
             params[key] = int(params[key])
@@ -57,7 +59,7 @@ def runCNN(params):
                 loss='categorical_crossentropy',
                 metrics=['accuracy'])
     model.fit(x=x_train, y=y_train, batch_size=params['batchSize'], epochs=1)
-    #Turns out that according to the 6 tests I ran, 1 epoch is enough to see which network is the most accurate, testing wasn't extensive though
+    #Turns out that according to the 6 tests I ran, 1 epoch is enough to see which network is the most accurate, testing wasn't extensive though and there was definitely a great deal of variation
 
 
     score = model.evaluate(x_test, y_test, batch_size=128)
@@ -69,7 +71,7 @@ def runCNN(params):
 
 batchSizes = [32,64,128]
 parameters = {'secondDropout': hp.uniform("secondDropout",0,.5), 'firstDropout': hp.uniform("firstDropout",0,.5), 'layer3Filters': hp.quniform("layer3Filters",16,128,1), 'layer2Filters': hp.quniform("layer2Filters",16,128,1), 'layer2Kernel': hp.quniform("layer2Kernel",3,6,1), 'denseNodes': hp.quniform("denseNodes",256,2048,1), 'batchSize': hp.choice("batchSize",batchSizes), 'learningRate': hp.uniform("learningRate",.000000001,.0001), 'layer1Filters': hp.quniform("layer1Filters",16,128,1), 'layer3Kernel': hp.quniform("layer3Kernel",3,6,1), 'layer1Kernel': hp.quniform("layer1Kernel",3,6,1), 'layer4Filters': hp.quniform("layer4Filters",16,128,1), 'layer4Kernel': hp.quniform("layer4Kernel",3,6,1)}
-best = fmin(fn=runCNN, space=parameters, algo=tpe.suggest, max_evals=5, verbose=True)
+best = fmin(fn=runCNN, space=parameters, algo=tpe.suggest, max_evals=2, verbose=True)
 best['batchSize'] = batchSizes[best['batchSize']]
 print("Best hyperparameters " + str(best))
 
