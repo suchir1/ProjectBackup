@@ -10,7 +10,7 @@ filepath = os.path.dirname(os.path.abspath(__file__))
 filepath = filepath[:filepath.rfind('/')]
 filepath = filepath + '/FashionMNIST/'
 sys.path.insert(0, filepath)
-from InitialNetwork import runCNN
+from SpectralOptimization import runCNN
 
 # Example 1: a simple sparse linear function, please uncomment the code below
 

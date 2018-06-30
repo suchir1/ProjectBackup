@@ -16,7 +16,7 @@ layer4Kernel1
 layer4Kernel2
 firstDropout1
 firstDropout2
-secondDropout1, 
+secondDropout1 
 secondDropout2
 denseLayer1
 denseLayer2

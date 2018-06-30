@@ -9,6 +9,7 @@ from utils import addNames,readOptions,printSeparator
 from base_alg import base_hyperband,base_random_search
 import sys
 import os
+from contextlib import redirect_stdout
 
 filepath = os.path.dirname(os.path.abspath(__file__))
 filepath = filepath + "/consoleOutput.txt"
