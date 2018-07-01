@@ -44,6 +44,7 @@ def runCNN(params):
 
     model.add(Conv2D(params['layer3Filters'], params['layer3Kernel'], padding='same'))
     model.add(Activation('relu'))
+    model.add(Dropout(.5))
     model.add(Conv2D(params['layer4Filters'], params['layer4Kernel']))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
@@ -52,6 +53,7 @@ def runCNN(params):
     model.add(Flatten())
     model.add(Dense(params['denseNodes']))
     model.add(Activation('relu'))
+    model.add(Dropout(.3))
     model.add(Dense(num_classes))
     model.add(Activation('softmax'))
 
