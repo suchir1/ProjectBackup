@@ -61,7 +61,7 @@ def runCNN(params):
                 loss='categorical_crossentropy',
                 metrics=['accuracy'])
     
-    for i in range(20):
+    for i in range(100):
         model.fit(x=x_train, y=y_train, batch_size=params['batchSize'], epochs=1)
         score = model.evaluate(x_test, y_test, batch_size=128)
         print("Accuracy on Testing Data:",str(score[1]*100)+"%")
@@ -91,5 +91,12 @@ accuracyIndices, paramIndices = zip(*sorted(zip(accuracyIndices, paramIndices)))
 accuracyIndices = list(accuracyIndices)
 paramIndices = list(paramIndices)
 
-for i in range(len(paramIndices)):
-    runCNN(paramIndices[-i-1])
+paramIndices[-1]['secondDropout']=.1
+paramIndices[-1]['firstDropout']=.25
+
+print(paramIndices[-1])
+
+runCNN(paramIndices[-1])
+
+# for i in range(len(paramIndices)):
+#     runCNN(paramIndices[-i-1])
