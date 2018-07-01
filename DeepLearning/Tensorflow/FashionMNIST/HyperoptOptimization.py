@@ -65,7 +65,7 @@ def runCNN(params):
     score = model.evaluate(x_test, y_test, batch_size=128)
 
     print("Accuracy on Testing Data:",str(score[1]*100)+"%")
-    print("Hyperparameters: "+params)
+    print("Hyperparameters: "+ str(params))
     sess.close()
     return {'loss': score[0], 'status': STATUS_OK }
 
