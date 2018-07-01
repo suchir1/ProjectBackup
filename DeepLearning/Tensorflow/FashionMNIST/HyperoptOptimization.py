@@ -71,7 +71,7 @@ def runCNN(params):
 
 batchSizes = [32,64,128]
 parameters = {'secondDropout': hp.uniform("secondDropout",0,.5), 'firstDropout': hp.uniform("firstDropout",0,.5), 'layer3Filters': hp.quniform("layer3Filters",16,128,1), 'layer2Filters': hp.quniform("layer2Filters",16,128,1), 'layer2Kernel': hp.quniform("layer2Kernel",3,6,1), 'denseNodes': hp.quniform("denseNodes",256,2048,1), 'batchSize': hp.choice("batchSize",batchSizes), 'learningRate': hp.uniform("learningRate",.000000001,.0001), 'layer1Filters': hp.quniform("layer1Filters",16,128,1), 'layer3Kernel': hp.quniform("layer3Kernel",3,6,1), 'layer1Kernel': hp.quniform("layer1Kernel",3,6,1), 'layer4Filters': hp.quniform("layer4Filters",16,128,1), 'layer4Kernel': hp.quniform("layer4Kernel",3,6,1)}
-best = fmin(fn=runCNN, space=parameters, algo=tpe.suggest, max_evals=2, verbose=True)
+best = fmin(fn=runCNN, space=parameters, algo=tpe.suggest, max_evals=10000, verbose=True)
 best['batchSize'] = batchSizes[best['batchSize']]
 print("Best hyperparameters " + str(best))
 
