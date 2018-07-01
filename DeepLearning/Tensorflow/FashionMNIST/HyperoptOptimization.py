@@ -65,7 +65,7 @@ def runCNN(params):
     score = model.evaluate(x_test, y_test, batch_size=128)
 
     print("Accuracy on Testing Data:",str(score[1]*100)+"%")
-    print(params)
+    print("Hyperparameters: "+params)
     sess.close()
     return {'loss': score[0], 'status': STATUS_OK }
 
@@ -76,5 +76,4 @@ best['batchSize'] = batchSizes[best['batchSize']]
 print("Best hyperparameters " + str(best))
 
 #TODO: Figure out how to automatically start and stop the google compute engine based on a script
-#TODO: Maybe delete the instance IFF your tensorflow installation is on a persistent disk, need to figure that out
 #TODO: Run hyperopt on GCE
