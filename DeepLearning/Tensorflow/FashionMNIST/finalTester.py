@@ -91,8 +91,8 @@ accuracyIndices, paramIndices = zip(*sorted(zip(accuracyIndices, paramIndices)))
 accuracyIndices = list(accuracyIndices)
 paramIndices = list(paramIndices)
 
-paramIndices[-1]['secondDropout']=.1
-paramIndices[-1]['firstDropout']=.25
+paramIndices[-1]['secondDropout']=.5
+paramIndices[-1]['firstDropout']=.5
 
 print(paramIndices[-1])
 
